@@ -44,7 +44,7 @@ interface Curso {
   gratuito: boolean;
   tags: string[];
   idAulas: number[];
-  nivel: string;
+  nivel: "iniciante" | "avancado";
 }
 
 function mostraTela(data: Curso[]) {
