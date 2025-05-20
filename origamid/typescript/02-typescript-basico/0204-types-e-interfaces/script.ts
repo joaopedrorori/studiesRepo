@@ -88,7 +88,7 @@ interface ProdutoExercicio {
   nome: string;
   preco: number;
   descricao: string;
-  garantia: number;
+  garantia: string;
   seguroAcidentes: boolean;
   empresaFabricante: EmpresasParceiras;
   empresaMontadora: EmpresasParceiras;
