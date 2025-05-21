@@ -1,47 +1,65 @@
-// interfaces do DOM
-// querySelector
-// Quando selecionamos um elemento do DOM com o querySelector,
-//  o objeto retornado dependera da string que passamos no metodo
-// https://developer.mozilla.org/en-US/docs/Web/API
+// // Eventos e Callback
 
-// const video = document.querySelector("video");
+// // Eventos
+// // Passamos o evento como uma string e uma funcao de callback no metodo addEventListener.
+// // A funcao de callback possui um parametro que faz referencia ao evento executado.
 
-// if (video instanceof HTMLVideoElement) console.log(video.volume);
+// const btn = document.querySelector("button");
 
-// querySelectorAll
-// Este retorna uma NodeList de elementos.
-// Nao confundir o nome da interface NodeListOf com o nome da classe NodeList
+// function handleClick(event: PointerEvent) {
+//   console.log(event);
+// }
 
-// const links = document.querySelectorAll(".link");
-// console.log(links instanceof NodeList);
+// btn?.addEventListener("pointerdown", handleClick);
 
-// links.forEach((link) => {
-//   if (link instanceof HTMLAnchorElement) {
-//     console.log(link.href);
-//   } else {
-//     console.log(typeof link);
-//   }
-// });
+// function handleScroll(event: Event) {
+//   console.log(event);
+// }
+// // window.addEventListener("scroll", handleScroll);
 
-// const anchorLinks = links.filter((link) => link instanceof HTMLAnchorElement);
-// erro, filter é um método de Array e não de NodeList
+// // Event e instanceof
+// // Uma funcao, quando criada para ser executada em diferentes tipos de eventos, deve receber como parametro o tipo comum entre elas "Event"
+// function ativarMenu(event: Event) {
+//   if (event instanceof MouseEvent) console.log(event);
+//   if (event instanceof TouchEvent) console.log(event.touches);
+//   if (event instanceof KeyboardEvent) console.log(event.key);
+// }
 
-// Funciona, pq a NodeList foi transformada em uma Array
-// const anchorLinks = Array.from(links).filter(
-//   (link) => link instanceof HTMLAnchorElement
-// );
+// // document.documentElement.addEventListener("mousedown", ativarMenu);
+// // document.documentElement.addEventListener("touchstart", ativarMenu);
+// // document.documentElement.addEventListener("keydown", ativarMenu);
+
+// // this
+// // Dentro de uma funcao, o this faz referencia ao objeto que executou a mesma.
+// // No JS o this pode ser passado como o primeiro parametro da funcao, mesmo nao sendo necessario informar ele durante a execucao
+// // function ativarMenuThis(this: HTMLButtonElement, event: MouseEvent) {
+// //   console.log(this.innerText);
+// // }
+// // btn?.addEventListener("click", ativarMenuThis);
+
+// // target e currentTarget
+// // O TypeScript não executa o JavaScript, assim ele não consegue assumir qual será o target ou currentTarget do evento executado.
+// // Os elementos são definidos como o tipo EventTarget, pois esse é o tipo mais comum entre os elementos que podem receber um evento.
+// function ativarMenuThis(event: MouseEvent) {
+//   const element = event.currentTarget;
+//   if (element instanceof HTMLButtonElement) console.log(element.innerText);
+// }
+// // btn?.addEventListener("click", ativarMenuThis);
 
 // Exercício
-// 1 - Selecione os elementos com a classe link.
-// 2 - Crie uma função que deve ser executada para cada elemento.
-// 3 - Modificar através da função o estilo da color e border.
-const links = document.querySelectorAll(".link");
+// Utilizando a estrutura HTML/CSS abaixo, crie o script que irá fazer o botão mobile funcionar (ativar/desativar a navegação).
+const btnNavMobile = document.getElementById("btn-mobile");
 
-links?.forEach((link) => {
-  if (link instanceof HTMLElement) changeColor(link);
-});
-
-function changeColor(item: HTMLElement) {
-  item.style.color = "red";
-  item.style.border = "2px solid green";
+function abrirMenuMobile(event: PointerEvent) {
+  const navBar = document.getElementById("nav");
+  const active = navBar?.classList.contains("active");
+  navBar?.classList.toggle("active");
+  if (active) {
+    btnNavMobile?.setAttribute("aria-expanded", "false");
+    btnNavMobile?.setAttribute("aria-label", "Abrir Menu");
+  } else {
+    btnNavMobile?.setAttribute("aria-expanded", "true");
+    btnNavMobile?.setAttribute("aria-label", "Fechar Menu");
+  }
 }
+btnNavMobile?.addEventListener("pointerdown", abrirMenuMobile);
