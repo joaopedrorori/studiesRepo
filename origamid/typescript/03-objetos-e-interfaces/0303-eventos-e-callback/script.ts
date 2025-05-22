@@ -51,6 +51,7 @@
 const btnNavMobile = document.getElementById("btn-mobile");
 
 function abrirMenuMobile(event: PointerEvent) {
+  event.preventDefault();
   const navBar = document.getElementById("nav");
   const active = navBar?.classList.contains("active");
   navBar?.classList.toggle("active");

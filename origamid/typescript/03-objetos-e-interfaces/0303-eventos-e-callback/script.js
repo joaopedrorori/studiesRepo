@@ -41,6 +41,7 @@
 // Utilizando a estrutura HTML/CSS abaixo, crie o script que irá fazer o botão mobile funcionar (ativar/desativar a navegação).
 const btnNavMobile = document.getElementById("btn-mobile");
 function abrirMenuMobile(event) {
+    event.preventDefault();
     const navBar = document.getElementById("nav");
     const active = navBar === null || navBar === void 0 ? void 0 : navBar.classList.contains("active");
     navBar === null || navBar === void 0 ? void 0 : navBar.classList.toggle("active");
