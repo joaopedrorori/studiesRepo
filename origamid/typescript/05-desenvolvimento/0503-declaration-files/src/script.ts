@@ -7,6 +7,7 @@ export const livro: Produto = {
   // ta la em types/global.d.ts
   nome: "O senhor dos aneis",
   preco: 2000,
+  cor: "preto",
 };
 
 // Declaração Global
@@ -24,16 +25,16 @@ declare global {
 // Use apenas quando necessário.
 // Assim como variáveis globais são problemáticas, tipos globais possuem os mesmos problemas.
 
-interface Produto {
-  nome: string;
-  preco: string;
-}
+// interface Produto {
+//   nome: string;
+//   preco: string;
+// }
 
-const livro2: Produto = {
-  nome: "Hobbit",
-  // preco: 200,//deu erro pq nao eh mais number e sim string, o script sobrescreveu
-  preco: "R$200", //
-};
+// const livro2: Produto = {
+//   nome: "Hobbit",
+//   // preco: 200,//deu erro pq nao eh mais number e sim string, o script sobrescreveu
+//   preco: "R$200", //
+// };
 
 // declaration
 // A configuracao declaration: true, gera arquivos .d.ts automaticament, com base nas interfaces dos arquivos .ts compilados
