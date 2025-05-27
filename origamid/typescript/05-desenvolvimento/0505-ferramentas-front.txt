@@ -1,0 +1,5 @@
+// Ferramentas Front
+// Vite
+// Ferramenta de automacao Front End.
+// Com ela podemos gerar bundles, iniciar um liveserver, otimizar o codigo para a producao e mais
+
