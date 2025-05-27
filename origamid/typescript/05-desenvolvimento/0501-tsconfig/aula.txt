@@ -1,3 +1,21 @@
+
+A forma a seguir sera usada durante o resto do curso
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "strict": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "removeComments": true,
+    "noImplicitReturns": true,
+    "outDir": "dist"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
+----------------------------
+
+essa parte foi a aula
 {
   // Compila ao salvar
   "compileOnSave": true,
@@ -31,12 +49,12 @@
     "noImplicitReturns": true,
     // Indica parâmetros e variáveis que não foram utilizados
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
     // Diretórios dos arquivos compilados
-    // "outDir": "dist"
+    "outDir": "dist"
   },
   // Compila o que estiver na pasta src
-  // "include": ["src"],
+  "include": ["src"],
   // Não compila o que estiver na pasta node_modules
   "exclude": ["node_modules"]
 }
