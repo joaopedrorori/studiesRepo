@@ -7,7 +7,14 @@ function showTotal(data) {
         .map((item) => Number(item.replace(".", "").replace(",", ".")));
     if (total && cleanData && total instanceof HTMLSpanElement) {
         total.innerText =
-            " " + cleanData.reduce((acc, curr) => acc + curr, 0).toString();
+            " " +
+                cleanData
+                    .reduce((acc, curr) => acc + curr, 0)
+                    .toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                })
+                    .replace("$", "$ ");
     }
 }
 function paymentMethod(data) {

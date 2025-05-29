@@ -33,7 +33,14 @@ function showTotal(data: Purchase[]) {
     .map((item) => Number(item.replace(".", "").replace(",", ".")));
   if (total && cleanData && total instanceof HTMLSpanElement) {
     total.innerText =
-      " " + cleanData.reduce((acc, curr) => acc + curr, 0).toString();
+      " " +
+      cleanData
+        .reduce((acc, curr) => acc + curr, 0)
+        .toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })
+        .replace("$", "$ ");
   }
 }
 
@@ -149,13 +156,6 @@ function table(data: Purchase[]) {
     }
   });
 }
-// <tr>
-//   <td>Owen Hill</td>
-//   <td>o.hill@email.com</td>
-//   <td>R$ 452,00</td>
-//   <td>Cartão de Crédito</td>
-//   <td>Paga</td>
-// </tr>
 
 function showData(data: Purchase[]) {
   showTotal(data);
