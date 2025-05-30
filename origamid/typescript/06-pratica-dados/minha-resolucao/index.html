@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="stats">
+      <header>
+        <h1>Stats</h1>
+        <p>Total: <span id="s-total"></span></p>
+      </header>
+      <div class="payment-methods">
+        <p>Credit Card: <span id="pm-credit-card"></span></p>
+        <p>Ticket: <span id="pm-ticket"></span></p>
+      </div>
+      <div class="payment-status">
+        <p>Paid: <span id="ps-paid"></span></p>
+        <p>Refused by credit card company: <span id="ps-refused"></span></p>
+        <p>Waiting payment: <span id="ps-waiting"></span></p>
+        <p>Purchase reversed: <span id="ps-reversed"></span></p>
+        <p>
+          Day of the week with the most sales: <span id="ps-week-day"></span>
+        </p>
+      </div>
+    </section>
+    <section class="data">
+      <h1>Data</h1>
+      <table class="transitions">
+        <thead>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Purchase</th>
+          <th>Payment</th>
+          <th>Status</th>
+        </thead>
+        <tbody id="purchase-table"></tbody>
+      </table>
+    </section>
+    <script type="module" src="./dist/script.js"></script>
+  </body>
+</html>
