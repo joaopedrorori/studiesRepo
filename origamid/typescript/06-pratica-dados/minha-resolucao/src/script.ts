@@ -9,22 +9,5 @@
 // 4 - Mostre as estatísticas na tela.
 // 5 - Organize o código em pequenos módulos.
 // 6 - Normalize os dados da API se achar necessário.
-import showTotal from "./total.js";
-import paymentMethod from "./payMethod.js";
-import { purchaseStatus, dayOfTheWeek } from "./purchaseStatus.js";
-import fillTable from "./fillTable.js";
-
-function showData(data: Purchase[]) {
-  showTotal(data);
-  paymentMethod(data);
-  purchaseStatus(data);
-  dayOfTheWeek(data);
-  fillTable(data);
-}
-
-async function fetchData(url: string) {
-  const r = await fetch(url);
-  const data = await r.json();
-  showData(data);
-}
+import { fetchData } from "./fetchData";
 fetchData("https://api.origamid.dev/json/transacoes.json");
