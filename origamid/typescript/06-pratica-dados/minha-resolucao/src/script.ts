@@ -9,5 +9,5 @@
 // 4 - Mostre as estatísticas na tela.
 // 5 - Organize o código em pequenos módulos.
 // 6 - Normalize os dados da API se achar necessário.
-import { fetchData } from "./fetchData";
+import { fetchData } from "./fetchData.js";
 fetchData("https://api.origamid.dev/json/transacoes.json");
