@@ -9,6 +9,7 @@
 // 4 - Mostre as estatísticas na tela.
 // 5 - Organize o código em pequenos módulos.
 // 6 - Normalize os dados da API se achar necessário.
+import Estatisticas from "./Estatisticas.js";
 import fetchData from "./fetchData.js";
 import normalizarTransacao from "./normalizarTransacao.js";
 
@@ -19,6 +20,20 @@ async function handleData() {
   if (!data) return;
   const transacoes = data.map(normalizarTransacao);
   preencherTabela(transacoes);
+  preencherEstatisticas(transacoes);
+}
+
+function preencherEstatisticas(transacoes: Transacao[]): void {
+  const data = new Estatisticas(transacoes);
+
+  const totalElement = document.querySelector<HTMLElement>("#total span");
+  if (totalElement) {
+    totalElement.innerText = data.total.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  }
+  console.log(data.total);
 }
 
 function preencherTabela(transacoes: Transacao[]): void {
