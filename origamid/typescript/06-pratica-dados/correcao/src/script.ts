@@ -9,6 +9,7 @@
 // 4 - Mostre as estatísticas na tela.
 // 5 - Organize o código em pequenos módulos.
 // 6 - Normalize os dados da API se achar necessário.
+import { CountList } from "./countBy.js";
 import Estatisticas from "./Estatisticas.js";
 import fetchData from "./fetchData.js";
 import normalizarTransacao from "./normalizarTransacao.js";
@@ -23,8 +24,21 @@ async function handleData() {
   preencherEstatisticas(transacoes);
 }
 
+function preencherLista(lista: CountList, containerId: string): void {
+  const containerElement = document.getElementById(containerId);
+  if (containerElement) {
+    Object.keys(lista).forEach((key) => {
+      containerElement.innerHTML += `<p>${key}: ${lista[key]}</p>`;
+    });
+  }
+}
+
 function preencherEstatisticas(transacoes: Transacao[]): void {
   const data = new Estatisticas(transacoes);
+
+  preencherLista(data.pagamento, "pagamento");
+  preencherLista(data.status, "status");
+  console.log(data.pagamento);
 
   const totalElement = document.querySelector<HTMLElement>("#total span");
   if (totalElement) {
@@ -33,7 +47,6 @@ function preencherEstatisticas(transacoes: Transacao[]): void {
       currency: "BRL",
     });
   }
-  console.log(data);
 }
 
 function preencherTabela(transacoes: Transacao[]): void {
