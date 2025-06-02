@@ -1,0 +1,44 @@
+// 1 - Acesse os dados da api: https://api.origamid.dev/json/transacoes.json
+// 2 - Mostre em uma tabela os dados de cada transação.
+// 3 - Calcule:
+// 3.1 - Soma total dos valores
+// 3.2 - Transações por meio de pagamento.
+// 3.3 - Transações por status.
+// 3.4 - Total de vendas por dia da semana.
+// 3.5 - Dia da semana com mais vendas.
+// 4 - Mostre as estatísticas na tela.
+// 5 - Organize o código em pequenos módulos.
+// 6 - Normalize os dados da API se achar necessário.
+import fetchData from "./fetchData.js";
+
+type TransacaoPagamento = "Cartão de Crédito" | "Boleto";
+type TransacaoStatus =
+  | "Paga"
+  | "Recusada pela operadora de cartão"
+  | "Aguardando pagamento"
+  | "Estornada";
+
+interface TransacaoAPI {
+  Nome: string;
+  ID: number;
+  Data: string;
+  Status: TransacaoStatus;
+  Email: string;
+  ["Valor (R$)"]: string;
+  ["Forma de Pagamento"]: TransacaoPagamento;
+  ["Cliente Novo"]: number;
+}
+
+async function handleData() {
+  const data = await fetchData<TransacaoAPI[]>(
+    "https://api.origamid.dev/json/transacoes.json"
+  );
+  if (data && data instanceof Array) {
+    data.forEach((item) => {
+      console.log(item["Valor (R$)"]);
+    });
+  }
+  console.log("codigo continuou");
+}
+
+handleData();
