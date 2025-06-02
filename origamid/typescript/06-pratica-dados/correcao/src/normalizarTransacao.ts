@@ -2,11 +2,11 @@ import moedaParaNumero from "./moedaParaNumero.js";
 import stringToDate from "./stringToDate.js";
 
 declare global {
-  type TransacaoPagamento = "Cartão de Crédito" | "Boleto";
+  type TransacaoPagamento = "Boleto" | "Cartão de Crédito";
   type TransacaoStatus =
     | "Paga"
     | "Recusada pela operadora de cartão"
-    | "Aguardando pagamento"
+    | "Agurdando pagamento"
     | "Estornada";
 
   interface TransacaoAPI {
@@ -23,7 +23,7 @@ declare global {
   interface Transacao {
     nome: string;
     id: number;
-    data: string;
+    data: Date;
     status: TransacaoStatus;
     email: string;
     moeda: string;
