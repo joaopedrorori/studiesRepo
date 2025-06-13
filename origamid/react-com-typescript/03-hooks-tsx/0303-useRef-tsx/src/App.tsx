@@ -35,23 +35,55 @@ import videoSrc from "./video.mp4";
 
 const App = () => {
   const video = React.useRef<HTMLVideoElement>(null);
+  const [paused, setPaused] = React.useState(true);
+
+  function forward(n: number) {
+    if (!video.current) return;
+    video.current.currentTime += n;
+  }
+
+  function changePlayBackRate(speed: number) {
+    if (!video.current) return;
+    video.current.play();
+    video.current.playbackRate = speed;
+  }
+
+  function pictureInPicture() {
+    if (!video.current) return;
+    if (document.pictureInPictureElement) {
+      document.exitPictureInPicture();
+    } else video.current.requestPictureInPicture();
+  }
+
+  function mute() {
+    if (!video.current) return;
+    video.current.muted = !video.current.muted;
+  }
 
   return (
     <div>
       <div className="flex">
-        <button
-          onClick={() => {
-            video.current?.play();
-          }}
-        >
-          Play
-        </button>
+        {paused ? (
+          <button
+            onClick={() => {
+              video.current?.play();
+            }}
+          >
+            Play
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              video.current?.pause();
+            }}
+          >
+            Pause
+          </button>
+        )}
 
         <button
           onClick={() => {
-            if (video.current) {
-              video.current.currentTime += 2;
-            }
+            forward(2);
           }}
         >
           +2s
@@ -59,48 +91,41 @@ const App = () => {
 
         <button
           onClick={() => {
-            if (video.current) {
-              video.current.play();
-              video.current.playbackRate = 1;
-            }
+            changePlayBackRate(1);
           }}
         >
           1x
         </button>
         <button
           onClick={() => {
-            if (video.current) {
-              video.current.play();
-              video.current.playbackRate = 2;
-            }
+            changePlayBackRate(2);
           }}
         >
           2x
         </button>
         <button
           onClick={() => {
-            if (video.current) {
-              if (!video.current.requestPictureInPicture()) {
-                video.current.requestPictureInPicture();
-              } else document.exitPictureInPicture();
-            }
+            pictureInPicture();
           }}
         >
           PiP
         </button>
         <button
           onClick={() => {
-            if (video.current) {
-              if (video.current.muted) video.current.muted = false;
-              else video.current.muted = true;
-            }
+            mute();
           }}
         >
           M
         </button>
       </div>
       <div>
-        <video controls src={videoSrc} ref={video}></video>
+        <video
+          controls
+          src={videoSrc}
+          onPause={() => setPaused(true)}
+          onPlay={() => setPaused(false)}
+          ref={video}
+        ></video>
       </div>
     </div>
   );
