@@ -1,0 +1,13 @@
+<script>
+  //Elabore um programa para uma loja
+  //Ele deve ler o preco de um produto e informar as opcoes de pagamento da loja
+  //Calcule e informe o valor para pagamento a vista com 10% de desconto e o valor em 3x
+  const valor = Number(prompt("Digite o valor a ser pago em R$"));
+  const aVista = valor * 0.9;
+  const parcelado = valor / 3;
+  alert(
+    `Preco: R$${valor.toFixed(2)}\nA vista: R$${aVista.toFixed(
+      2
+    )}\nParcelado 3x: R$${parcelado.toFixed(2)}`
+  );
+</script>
