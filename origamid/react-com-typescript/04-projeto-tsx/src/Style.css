@@ -143,3 +143,10 @@ ul {
   text-decoration: none;
   color: inherit;
 }
+
+/* loading */
+/* @keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+} */
